@@ -5,7 +5,7 @@
 
 .adhans {
   justify-content: space-between;
-  background-color: #0d1621;
+  background-color: #ebebeb;
   padding: 20px 20px 5px 20px;
   opacity: 0.8;
   border-radius: 10px;
@@ -13,6 +13,10 @@
   font-weight: bolder;
   width: 80vw;
   margin: 0 auto;
+}
+
+table {
+  width: 100%;
 }
 
 .bg {
