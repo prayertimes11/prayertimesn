@@ -1,0 +1,54 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.adhans {
+  justify-content: space-between;
+  background-color: #0d1621;
+  padding: 20px 20px 5px 20px;
+  opacity: 0.8;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: bolder;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../../public/bg.jpg");
+
+  /* Full height */
+  max-height: 100vh;
+  min-height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat !important;
+  background-clip: content-box;
+}
+
+th {
+  color: #0d1621 !important;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 3rem !important;
+}
+
+.td {
+  color: #0d1621 !important;
+}
+
+.ant-table-tbody {
+  font-size: 2.8rem !important;
+}
+
+.ant-table-tbody {
+  text-align: center !important;
+}
+
+.ant-table-cell {
+  text-align: center !important;
+}
