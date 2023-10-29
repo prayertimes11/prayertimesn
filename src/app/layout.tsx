@@ -16,7 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      aa
       <head>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=globalThis"></script>
       </head>
