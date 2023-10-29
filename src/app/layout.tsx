@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "globalthis/polyfill";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,6 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      aa
+      <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=globalThis"></script>
+      </head>
       <body className="bg">{children}</body>
     </html>
   );
