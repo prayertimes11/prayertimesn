@@ -25,10 +25,19 @@ const Adhans = () => {
   };
 
   useEffect(() => {
-    if (prayerTimes === null) {
-      getPrayerTimes();
-    }
-    console.log(prayerTimes);
+    getPrayerTimes();
+
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      console.log(now);
+      if (now.getHours() === 0 && now.getMinutes() === 0) {
+        getPrayerTimes();
+      }
+    }, 60000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   const columns = [
@@ -64,7 +73,7 @@ const Adhans = () => {
         {
           name: "Fajr",
           begins: moment(prayerTimes.Fajr, ["HH:mm"]).format("hh:mm A"),
-          iqamah: "07:00 AM",
+          iqamah: "06:30 AM",
         },
         {
           name: "Sunrise",
@@ -80,17 +89,17 @@ const Adhans = () => {
         {
           name: "Asr",
           begins: moment(prayerTimes.Asr, ["HH:mm"]).format("hh:mm A"),
-          iqamah: "05:00 PM",
+          iqamah: "04:00 PM",
         },
         {
           name: "Maghrib",
           begins: moment(prayerTimes.Maghrib, ["HH:mm"]).format("hh:mm A"),
-          iqamah: "07:00 PM",
+          iqamah: "05:45 PM",
         },
         {
           name: "Isha",
           begins: moment(prayerTimes.Isha, ["HH:mm"]).format("hh:mm A"),
-          iqamah: "08:30 PM",
+          iqamah: "08:00 PM",
         },
         {
           name: "Jumuah",
