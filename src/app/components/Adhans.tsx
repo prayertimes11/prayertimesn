@@ -10,7 +10,7 @@ type prayerType = {
   iqamah: string;
 };
 
-const Adhans = () => {
+const Adhans: React.FC<{ date: Date }> = ({ date }) => {
   const sharedOnCell = () => {
     return {};
   };
@@ -28,8 +28,8 @@ const Adhans = () => {
     getPrayerTimes();
 
     const intervalId = setInterval(() => {
-      const now = new Date();
-      if (now.getHours() === 0 && now.getMinutes() === 0) {
+      console.log("saat kontrolü 12 mi diye");
+      if (date.getHours() === 0 && date.getMinutes() === 0) {
         getPrayerTimes();
       }
     }, 60000);
