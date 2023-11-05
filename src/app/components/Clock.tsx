@@ -3,51 +3,67 @@ import { useEffect, useState } from "react";
 import { Number } from "./Number";
 import { Word } from "./Word";
 import "../styles/clock.css";
+import { getTime } from "../api";
 
 const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 export const Clock = () => {
-  const [hour, setHour] = useState(0);
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
-  const [day, setDay] = useState(0);
-  const [pm, setPm] = useState(false);
+  const [date, setDate] = useState<Date>(new Date());
+  const [race, setRace] = useState(0);
 
-  useEffect(() => {
-    const update = () => {
-      const date = new Date();
-      let hour = date.getHours();
-      hour = hour % 12 || 12;
-      setHour(hour);
-      setMinute(date.getMinutes());
-      setSecond(date.getSeconds());
-      setDay(date.getDay());
-      setPm(date.getHours() >= 12);
+  const getTimeAndSetDate = async () => {
+    const res = await getTime();
+
+    const parseXml = function (xmlStr: any) {
+      return new window.DOMParser().parseFromString(xmlStr, "text/xml");
     };
 
-    update();
+    const formattedDate =
+      parseXml(res).getElementsByTagName("formatted")[0].childNodes[0]
+        .nodeValue;
 
-    const interval = setInterval(() => {
-      update();
-    }, 1000);
+    var dateStr = formattedDate as string;
+    var parts = dateStr.split(" ");
+    var dateParts = parts[0].split("-");
+    var timeParts = parts[1].split(":");
 
-    return () => clearInterval(interval);
+    var year = parseInt(dateParts[0]);
+    var month = parseInt(dateParts[1]) - 1;
+    var day = parseInt(dateParts[2]);
+    var hour = parseInt(timeParts[0]);
+    var minute = parseInt(timeParts[1]);
+    var second = parseInt(timeParts[2]);
+
+    var date = new Date(year, month, day, hour, minute, second);
+
+    setDate(date);
+
+    if (race === 0) {
+      const timer = setInterval(() => {
+        setDate((prevDate) => new Date(prevDate.getTime() + 60000));
+      }, 60000);
+      setRace(1);
+    }
+  };
+
+  useEffect(() => {
+    getTimeAndSetDate();
   }, []);
+
+  const pm = date.getHours() >= 12;
 
   return (
     <div className="clock">
       <div className="calendar">
         {days.map((value, index) => (
-          <Word key={value} value={value} hidden={index != day} />
+          <Word key={value} value={value} hidden={index != date.getDay()} />
         ))}
       </div>
       <div className="row">
         <div className="hour">
-          <Number value={hour} />
+          <Number value={date.getHours() % 12 || 12} />
           <Word value={":"} />
-          <Number value={minute} />
-          <Word value={":"} />
-          <Number value={second} />
+          <Number value={date.getMinutes()} />
         </div>
         <div className="ampm">
           <Word value={"AM"} hidden={pm} />
