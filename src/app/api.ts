@@ -14,7 +14,7 @@ export async function getAzanTimes(address: string) {
 
 export async function getTime() {
   const res = await axios.get(
-    `http://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.API_KEY}&format=xml&by=zone&zone=America/Chicago`
+    `http://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.NEXT_PUBLIC_API_KEY}&format=xml&by=zone&zone=America/Chicago`
   );
 
   if (!res.data) {
