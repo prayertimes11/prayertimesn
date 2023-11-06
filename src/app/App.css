@@ -51,3 +51,7 @@ th {
 .ant-table-cell {
   text-align: center !important;
 }
+
+.ant-table-cell {
+  padding: 0 !important;
+}
