@@ -25,18 +25,17 @@ const Adhans: React.FC<{ date: Date }> = ({ date }) => {
   };
 
   useEffect(() => {
+    if (
+      (date.getHours() === 0 && date.getMinutes() === 0) ||
+      (date.getHours() === 0 && date.getMinutes() === 1) ||
+      (date.getHours() === 0 && date.getMinutes() === 2)
+    ) {
+      getPrayerTimes();
+    }
+  }, [date]);
+
+  useEffect(() => {
     getPrayerTimes();
-
-    const intervalId = setInterval(() => {
-      console.log("saat kontrolü 12 mi diye");
-      if (date.getHours() === 0 && date.getMinutes() === 0) {
-        getPrayerTimes();
-      }
-    }, 60000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
   }, []);
 
   const columns = [

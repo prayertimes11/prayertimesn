@@ -44,10 +44,6 @@ export default function Home() {
     getDate();
   }, []);
 
-  useEffect(() => {
-    console.log("date -> ", date);
-  }, [date]);
-
   return (
     <main>
       <Clock date={date} />
