@@ -71,7 +71,7 @@ const Adhans: React.FC<{ date: Date }> = ({ date }) => {
         {
           name: "Fajr",
           begins: moment(prayerTimes.Fajr, ["HH:mm"]).format("hh:mm A"),
-          iqamah: "06:45 AM",
+          iqamah: "07:00 AM",
         },
         {
           name: "Sunrise",
@@ -87,7 +87,7 @@ const Adhans: React.FC<{ date: Date }> = ({ date }) => {
         {
           name: "Asr",
           begins: moment(prayerTimes.Asr, ["HH:mm"]).format("hh:mm A"),
-          iqamah: "04:00 PM",
+          iqamah: "04:30 PM",
         },
         {
           name: "Maghrib",
